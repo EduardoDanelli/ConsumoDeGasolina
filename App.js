@@ -1,20 +1,40 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+
+import { StatusBar } from "expo-status-bar";
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import Calculo from "./src/calculo";
+import Resultado from "./src/resultado";
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="calculo"
+          component={Calculo}
+          options={{ header: () => null }}
+        />
+        <Stack.Screen
+          name="resultado"
+          component={Resultado}
+          options={{
+            title: "",
+            headerTitleAlign: "left",
+            headerTitleStyle: {
+              fontSize: 18,
+              marginLeft: -30,
+              marginBottom: 2,
+            },
+            headerStyle: {
+              elevation: 0,
+            },
+          }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
